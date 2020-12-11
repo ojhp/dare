@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "name": "Pages"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "string",
+      "regex": "^[-a-z]+$",
+      "required": true,
+      "unique": true
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "unique": false
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  strapi:
+    image: strapi/strapi
+    depends_on:
+      - mongo
+    environment:
+      DATABASE_CLIENT: mongo
+      DATABASE_HOST: mongo
+      DATABASE_PORT: 27017
+      DATABASE_NAME: dare
+      DATABASE_USERNAME: dare
+      DATABASE_PASSWORD: secret
+    ports:
+      - 3001:1337
+    volumes:
+      - ./cms:/srv/app
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_DATABASE: dare
+      MONGO_INITDB_ROOT_USERNAME: dare
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    volumes:
+      - ./mongodata:/data/db
