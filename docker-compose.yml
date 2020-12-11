@@ -2,7 +2,7 @@ version: '3'
 
 services:
   strapi:
-    image: strapi/strapi
+    build: cms
     depends_on:
       - mongo
     environment:
@@ -12,6 +12,7 @@ services:
       DATABASE_NAME: dare
       DATABASE_USERNAME: dare
       DATABASE_PASSWORD: secret
+      NODE_ENV: development
     ports:
       - 3001:1337
     volumes:

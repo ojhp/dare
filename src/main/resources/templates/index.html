@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:text="${@siteSettings.title}">Dimension by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style type="text/css" th:utext="${@style.setBackgroundImage('#bg:after', @siteSettings.backgroundImage)}"></style>
+		<style type="text/css">
+			article img { width: 100%; }
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span th:class="${@style.getIconClasses(@siteSettings.icon)}"></span>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1 th:text="${@siteSettings.title}">Dimension</h1>
+								<p th:utext="${@markdown.renderHtml(@siteSettings.header)}">A fully responsive site template designed by <a href="https://html5up.net">HTML5 UP</a> and released<br />
+								for free under the <a href="https://html5up.net/license">Creative Commons</a> license.</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li th:each="page : ${pages}"><a th:href="'#' + ${page.slug}" th:text="${page.title}">Intro</a></li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+							<article th:each="page : ${pages}" th:id="${page.slug}">
+								<h2 class="major" th:text="${page.title}">Intro</h2>
+								<div th:utext="${@markdown.renderHtml(page.content)}">
+									<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+									<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome work</a>.</p>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
+								</div>
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer" th:utext="${@markdown.renderHtml(@siteSettings.footer)}">
+						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
