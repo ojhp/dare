@@ -7,6 +7,7 @@ import org.springframework.core.env.Environment;
 @Configuration
 public class StrapiCmsSettings implements CmsSettings {
     private static final String DARE_CMS_ROOT_URI = "DARE_CMS_ROOT_URI";
+    private static final String DARE_ASSET_ROOT_URI = "DARE_ASSET_ROOT_URI";
 
     private final Environment environment;
 
@@ -22,7 +23,7 @@ public class StrapiCmsSettings implements CmsSettings {
 
     @Override
     public String getAssetRootUri() {
-        return this.getRootUri();
+        return this.environment.getProperty(DARE_ASSET_ROOT_URI);
     }
 
     @Override

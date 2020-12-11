@@ -1,7 +1,17 @@
 version: '3'
 
 services:
-  strapi:
+  web:
+    build: .
+    depends_on:
+      - cms
+    environment:
+      DARE_CMS_ROOT_URI: http://cms:1337/
+      DARE_ASSET_ROOT_URI: http://localhost:3001/
+    ports:
+      - 3000:3000
+
+  cms:
     build: cms
     depends_on:
       - mongo

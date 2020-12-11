@@ -18,7 +18,7 @@ public class StrapiCmsSettingsTests {
     }
 
     @Test
-    public void getRootUri_WhenCalled_FetchesSettingFromEnvironment() {
+    public void getRootUri_WhenCalled_ReturnsRootUri() {
         String stubUri = "http://www.example.com/cms";
 
         when(this.mockEnvironment.getProperty("DARE_CMS_ROOT_URI"))
@@ -28,10 +28,10 @@ public class StrapiCmsSettingsTests {
     }
 
     @Test
-    public void getAssetRootUri_WhenCalled_ReturnsRootUri() {
+    public void getAssetRootUri_WhenCalled_ReturnsAssetRootUri() {
         String stubUri = "http://www.example.com/cms";
 
-        when(this.mockEnvironment.getProperty("DARE_CMS_ROOT_URI"))
+        when(this.mockEnvironment.getProperty("DARE_ASSET_ROOT_URI"))
                 .thenReturn(stubUri);
 
         assertEquals(stubUri, this.sut.getAssetRootUri());
