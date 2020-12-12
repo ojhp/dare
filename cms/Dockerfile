@@ -1,4 +1,12 @@
-FROM strapi/strapi:3.3.4
+FROM strapi/base:14
 
+WORKDIR /app
+COPY package.json yarn.lock /app/
+RUN yarn install --production
+
+COPY . /app
 ENV NODE_ENV=production
-COPY . /srv/app
+RUN yarn build
+
+EXPOSE 1337
+CMD ["yarn", "start"]

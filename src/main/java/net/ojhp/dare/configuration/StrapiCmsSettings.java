@@ -27,6 +27,11 @@ public class StrapiCmsSettings implements CmsSettings {
     }
 
     @Override
+    public String getAssetPrefix() {
+        return "/uploads/";
+    }
+
+    @Override
     public String getSingletonPath(String name) {
         return String.format("/%s", name);
     }

@@ -22,7 +22,7 @@
     "strapi-connector-mongoose": "3.3.4"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Owen Platt"
   },
   "strapi": {
     "uuid": "f4b7d634-8572-419a-bab0-9463a38f59a4"
