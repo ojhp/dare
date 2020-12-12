@@ -24,6 +24,8 @@ services:
       DATABASE_PASSWORD: secret
     ports:
       - 3001:1337
+    volumes:
+      - ./cms/public/uploads:/app/public/uploads
 
   mongo:
     image: mongo
