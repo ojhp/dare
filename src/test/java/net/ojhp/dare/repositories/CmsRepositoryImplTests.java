@@ -61,7 +61,7 @@ public class CmsRepositoryImplTests {
                         HttpStatus.NOT_FOUND,
                         "Failed",
                         new HttpHeaders(),
-                        new byte[] {},
+                        new byte[]{},
                         null));
 
         assertNull(this.sut.getSingleton(DummySingleton.class));
@@ -101,15 +101,17 @@ public class CmsRepositoryImplTests {
                         HttpStatus.NOT_FOUND,
                         "Failed",
                         new HttpHeaders(),
-                        new byte[] {},
+                        new byte[]{},
                         null));
 
         assertNull(this.sut.getAll(DummyCollection.class));
     }
 
     @Singleton(SINGLETON_TYPE_NAME)
-    private class DummySingleton {}
+    private class DummySingleton {
+    }
 
     @Collection(COLLECTION_TYPE_NAME)
-    private class DummyCollection {}
+    private class DummyCollection {
+    }
 }

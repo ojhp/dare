@@ -1,28 +1,29 @@
-package net.ojhp.dare.services;
+package net.ojhp.dare.helpers;
 
 import com.vladsch.flexmark.util.ast.Document;
 import com.vladsch.flexmark.util.ast.IParse;
 import com.vladsch.flexmark.util.ast.IRender;
 import com.vladsch.flexmark.util.ast.Node;
+import net.ojhp.dare.services.AssetPathFixer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class MarkdownServiceTests {
+public class MarkdownHelperTests {
     private IParse mockParser;
     private IRender mockRenderer;
     private AssetPathFixer mockAssetPathFixer;
-    private MarkdownService sut;
+    private MarkdownHelper sut;
 
     @BeforeEach
     public void setUp() {
         this.mockParser = mock(IParse.class);
         this.mockRenderer = mock(IRender.class);
         this.mockAssetPathFixer = mock(AssetPathFixer.class);
-        this.sut = new MarkdownService(this.mockParser, this.mockRenderer,
+        this.sut = new MarkdownHelper(this.mockParser, this.mockRenderer,
                 this.mockAssetPathFixer);
     }
 

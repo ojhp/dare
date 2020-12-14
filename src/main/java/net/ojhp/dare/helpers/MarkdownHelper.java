@@ -1,19 +1,20 @@
-package net.ojhp.dare.services;
+package net.ojhp.dare.helpers;
 
 import com.vladsch.flexmark.util.ast.IParse;
 import com.vladsch.flexmark.util.ast.IRender;
 import com.vladsch.flexmark.util.ast.Node;
+import net.ojhp.dare.services.AssetPathFixer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("markdown")
-public class MarkdownService {
+public class MarkdownHelper {
     private final IParse parser;
     private final IRender renderer;
     private final AssetPathFixer assetPathFixer;
 
     @Autowired
-    public MarkdownService(
+    public MarkdownHelper(
             IParse parser,
             IRender renderer,
             AssetPathFixer assetPathFixer) {

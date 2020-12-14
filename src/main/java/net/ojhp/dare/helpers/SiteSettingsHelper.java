@@ -1,4 +1,4 @@
-package net.ojhp.dare.services;
+package net.ojhp.dare.helpers;
 
 import net.ojhp.dare.models.Asset;
 import net.ojhp.dare.models.SiteSettings;
@@ -10,12 +10,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 @Service("siteSettings")
 @Scope(WebApplicationContext.SCOPE_REQUEST)
-public class SiteSettingsService {
+public class SiteSettingsHelper {
     private final CmsRepository cmsRepository;
     private SiteSettings siteSettings;
 
     @Autowired
-    public SiteSettingsService(CmsRepository cmsRepository) {
+    public SiteSettingsHelper(CmsRepository cmsRepository) {
         this.cmsRepository = cmsRepository;
     }
 

@@ -1,20 +1,22 @@
-package net.ojhp.dare.services;
+package net.ojhp.dare.helpers;
 
 import net.ojhp.dare.models.Asset;
+import net.ojhp.dare.services.AssetPathFixer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class StyleServiceTests {
+public class StyleHelperTests {
     private AssetPathFixer mockAssetPathFixer;
-    private StyleService sut;
+    private StyleHelper sut;
 
     @BeforeEach
     public void setUp() {
         this.mockAssetPathFixer = mock(AssetPathFixer.class);
-        this.sut = new StyleService(this.mockAssetPathFixer);
+        this.sut = new StyleHelper(this.mockAssetPathFixer);
     }
 
     @Test

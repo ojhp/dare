@@ -1,15 +1,16 @@
-package net.ojhp.dare.services;
+package net.ojhp.dare.helpers;
 
 import net.ojhp.dare.models.Asset;
+import net.ojhp.dare.services.AssetPathFixer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("style")
-public class StyleService {
+public class StyleHelper {
     private final AssetPathFixer assetPathFixer;
 
     @Autowired
-    public StyleService(AssetPathFixer assetPathFixer) {
+    public StyleHelper(AssetPathFixer assetPathFixer) {
         this.assetPathFixer = assetPathFixer;
     }
 

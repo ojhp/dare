@@ -1,4 +1,4 @@
-package net.ojhp.dare.services;
+package net.ojhp.dare.helpers;
 
 import net.ojhp.dare.models.Asset;
 import net.ojhp.dare.models.SiteSettings;
@@ -6,10 +6,11 @@ import net.ojhp.dare.repositories.CmsRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.*;
 
-public class SiteSettingsServiceTests {
+public class SiteSettingsHelperTests {
     private static final String CONFIGURED_TITLE = "Site Name";
     private static final String CONFIGURED_HEADER = "Header text";
     private static final String CONFIGURED_ICON = "icon-name";
@@ -17,12 +18,12 @@ public class SiteSettingsServiceTests {
     private static final String CONFIGURED_FOOTER = "Footer text";
 
     private CmsRepository mockRepository;
-    private SiteSettingsService sut;
+    private SiteSettingsHelper sut;
 
     @BeforeEach
     public void setUp() {
         this.mockRepository = mock(CmsRepository.class);
-        this.sut = new SiteSettingsService(this.mockRepository);
+        this.sut = new SiteSettingsHelper(this.mockRepository);
 
         SiteSettings stubSiteSettings = new SiteSettings();
         stubSiteSettings.setTitle(CONFIGURED_TITLE);
