@@ -1,6 +1,5 @@
 $(function() {
   let token = undefined;
-  let userId = undefined;
   let replyId = undefined;
 
   let formAlert = $('#form-alert');
@@ -34,7 +33,7 @@ $(function() {
   }
 
   function enableForm(form, action) {
-    form.find('input,select,textarea').attr('disabled', 'disabled');
+    form.find('input,select,textarea').removeAttr('disabled');
     form.find('input[type="submit"]').val(action);
   }
 
@@ -76,7 +75,6 @@ $(function() {
       data: request,
       success: function(data) {
         token = data.jwt;
-        userId = data.user.id;
 
         loginForm.hide();
         loadRsvpForm();
@@ -90,7 +88,7 @@ $(function() {
 
   function loadRsvpForm() {
     $.ajax({
-      url: rsvpForm.attr('action') + '?user.id=' + userId,
+      url: rsvpForm.attr('action'),
       method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + token
@@ -116,7 +114,6 @@ $(function() {
 
   function submitReply(data) {
     let request = {
-      user: userId,
       data: data
     };
 
@@ -135,7 +132,9 @@ $(function() {
       },
       dataType: 'json',
       data: request,
-      success: function() {
+      success: function(data) {
+        replyId = data._id;
+
         enableForm(rsvpForm, 'Send Reply');
         showAlert('Submitted Successfully!');
       },
