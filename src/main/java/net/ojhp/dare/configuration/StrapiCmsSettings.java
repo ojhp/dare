@@ -40,4 +40,9 @@ public class StrapiCmsSettings implements CmsSettings {
     public String getCollectionPath(String name) {
         return String.format("/%s", name);
     }
+
+    @Override
+    public String getAuthenticationPath() {
+        return "/auth/local";
+    }
 }

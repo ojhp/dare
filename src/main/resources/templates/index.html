@@ -6,12 +6,12 @@
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title th:text="${@siteSettings.title}">Dimension by HTML5 UP</title>
+		<title th:text="${site.title}">Dimension by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<style type="text/css" th:utext="${@style.setBackgroundImage('#bg:after', @siteSettings.backgroundImage)}"></style>
+		<style type="text/css" th:utext="${@style.setBackgroundImage('#bg:after', site.backgroundImage)}"></style>
 		<style type="text/css">
 			article img { width: 100%; }
 		</style>
@@ -24,18 +24,19 @@
 				<!-- Header -->
 					<header id="header">
 						<div class="logo">
-							<span th:class="${@style.getIconClasses(@siteSettings.icon)}"></span>
+							<span th:class="${@style.getIconClasses(site.icon)}"></span>
 						</div>
 						<div class="content">
 							<div class="inner">
-								<h1 th:text="${@siteSettings.title}">Dimension</h1>
-								<p th:utext="${@markdown.renderHtml(@siteSettings.header)}">A fully responsive site template designed by <a href="https://html5up.net">HTML5 UP</a> and released<br />
+								<h1 th:text="${site.title}">Dimension</h1>
+								<p th:utext="${@markdown.renderHtml(site.header)}">A fully responsive site template designed by <a href="https://html5up.net">HTML5 UP</a> and released<br />
 								for free under the <a href="https://html5up.net/license">Creative Commons</a> license.</p>
 							</div>
 						</div>
 						<nav>
 							<ul>
 								<li th:each="page : ${pages}"><a th:href="'#' + ${page.slug}" th:text="${page.title}">Intro</a></li>
+								<li th:if="${!replyQuestions.isEmpty()}"><a href="#rsvp">RSVP</a></li>
 							</ul>
 						</nav>
 					</header>
@@ -53,10 +54,15 @@
 								</div>
 							</article>
 
+						  <article th:if="${!replyQuestions.isEmpty()}" id="rsvp">
+								<h2 class="major">RSVP</h2>
+								<div th:replace="rsvp :: forms(${replyQuestions})"></div>
+							</article>
+
 					</div>
 
 				<!-- Footer -->
-					<footer id="footer" th:utext="${@markdown.renderHtml(@siteSettings.footer)}">
+					<footer id="footer" th:utext="${@markdown.renderHtml(site.footer)}">
 						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
 
@@ -71,6 +77,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+		  <script src="assets/js/rsvp.js"></script>
 
 	</body>
 </html>

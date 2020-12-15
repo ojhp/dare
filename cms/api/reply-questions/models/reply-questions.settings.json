@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reply_questions",
+  "info": {
+    "name": "Reply Questions",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "unique": false
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "textBox",
+        "select"
+      ],
+      "required": true
+    },
+    "options": {
+      "type": "json"
+    },
+    "required": {
+      "type": "boolean",
+      "required": true
+    }
+  }
+}

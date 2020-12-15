@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/reply-questions",
+      "handler": "reply-questions.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/reply-questions/count",
+      "handler": "reply-questions.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/reply-questions/:id",
+      "handler": "reply-questions.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/reply-questions",
+      "handler": "reply-questions.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/reply-questions/:id",
+      "handler": "reply-questions.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/reply-questions/:id",
+      "handler": "reply-questions.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

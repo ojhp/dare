@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  </head>
+  <body>
+    <div th:fragment="forms(questions)">
+      <p id="form-alert"></p>
+
+      <form id="login-form" th:action="${@rsvp.authenticationUrl}" method="post">
+        <div class="fields">
+          <div class="field">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text">
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+          </div>
+        </div>
+
+        <ul class="actions">
+          <li><input type="submit" value="Log In" class="primary"></li>
+        </ul>
+      </form>
+
+      <form id="rsvp-form" th:action="${@rsvp.repliesUrl}" method="post">
+        <div class="fields">
+          <div th:each="question : ${questions}" class="field">
+            <label th:for="${question.name}" th:text="${question.label}"></label>
+
+            <input th:if="${question.type == 'text'}" th:id="${question.name}" th:name="${question.name}" type="text">
+
+            <select th:if="${question.type == 'select'}" th:id="${question.name}" th:name="${question.name}"
+                    th:required="${question.required}">
+              <option></option>
+              <option th:each="option : ${question.options.keySet()}" th:value="${option}"
+                      th:text="${question.options.get(option)}"></option>
+            </select>
+
+            <textarea th:if="${question.type == 'textBox'}" th:id="${question.name}" th:name="${question.name}"></textarea>
+          </div>
+        </div>
+
+        <ul class="actions">
+          <li><input type="submit" value="Send Reply" class="primary"></li>
+        </ul>
+      </form>
+    </div>
+  </body>
+</html>

@@ -10,4 +10,6 @@ public interface CmsSettings {
     String getSingletonPath(String name);
 
     String getCollectionPath(String name);
+
+    String getAuthenticationPath();
 }
