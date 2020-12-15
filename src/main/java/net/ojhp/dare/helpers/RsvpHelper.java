@@ -8,6 +8,8 @@ import java.net.URL;
 
 @Service("rsvp")
 public class RsvpHelper {
+    private static final String REPLIES_COLLECTION_NAME = "replies";
+
     private final CmsSettings cmsSettings;
 
     public RsvpHelper(CmsSettings cmsSettings) {
@@ -19,7 +21,7 @@ public class RsvpHelper {
     }
 
     public String getRepliesUrl() throws MalformedURLException {
-        return getPath(this.cmsSettings.getCollectionPath("replies"));
+        return getPath(this.cmsSettings.getCollectionPath(REPLIES_COLLECTION_NAME));
     }
 
     private String getPath(String path) throws MalformedURLException {

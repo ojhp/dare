@@ -39,6 +39,11 @@ public class StrapiCmsSettingsTests {
     }
 
     @Test
+    public void getAssetPrefix_WhenCalled_ReturnsExpectedValue() {
+        assertEquals("/uploads/", this.sut.getAssetPrefix());
+    }
+
+    @Test
     public void getSingletonPath_WhenCalled_ReturnsCorrectPath() {
         String stubName = "singleton-type";
 
@@ -50,5 +55,10 @@ public class StrapiCmsSettingsTests {
         String stubName = "collection-type";
 
         assertEquals("/collection-type", this.sut.getCollectionPath(stubName));
+    }
+
+    @Test
+    public void getAuthenticationPath_WhenCalled_ReturnsExpectedValue() {
+        assertEquals("/auth/local", this.sut.getAuthenticationPath());
     }
 }
