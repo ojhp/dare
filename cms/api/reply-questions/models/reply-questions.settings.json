@@ -31,7 +31,8 @@
       "enum": [
         "text",
         "textBox",
-        "select"
+        "select",
+        "title"
       ],
       "required": true
     },

@@ -5,9 +5,24 @@ $(function() {
   let formAlert = $('#form-alert');
   let loginForm = $('#login-form');
   let rsvpForm = $('#rsvp-form');
+  let attending = $('#attending');
+  let questions = $('.question');
+  let reload = $('#reload');
 
-  formAlert.hide();
-  rsvpForm.hide();
+  reset();
+
+  attending.on('change', function(e) {
+    if (attending.val() == 'yes') {
+      questions.show();
+      questions.each(function(_, question) {
+        $(question).attr('required', $(question).data('required'));
+      });
+    } else {
+      questions.hide();
+      questions.removeAttr('required');
+    }
+  });
+  attending.trigger('change');
 
   loginForm.on('submit', function(e) {
     e.preventDefault();
@@ -27,6 +42,10 @@ $(function() {
     submitReply(getRsvpData());
   });
 
+  $('#cancel,#reload').on('click', function(e) {
+    reset();
+  });
+
   function disableForm(form, message) {
     form.find('input,select,textarea').attr('disabled', 'disabled');
     form.find('input[type="submit"]').val(message);
@@ -41,8 +60,9 @@ $(function() {
     formAlert.hide();
   }
 
-  function showAlert(message) {
+  function showAlert(message, color) {
     formAlert.text(message);
+    formAlert.css('color', color);
     formAlert.show();
   }
 
@@ -60,6 +80,7 @@ $(function() {
     for (let i = 0; i < fields.length; i++) {
       $(fields[i]).val(data[fields[i].name] ?? '');
     }
+    attending.trigger('change');
   }
 
   function logIn(username, password) {
@@ -67,6 +88,8 @@ $(function() {
       identifier: username,
       password: password
     };
+
+    loginForm.find('input[type="password"]').val('');
 
     $.ajax({
       url: loginForm.attr('action'),
@@ -81,7 +104,7 @@ $(function() {
       },
       error: function() {
         enableForm(loginForm, 'Log In');
-        showAlert('Invalid username or password!');
+        showAlert('Invalid username or password!', '#c33');
       }
     });
   }
@@ -136,12 +159,25 @@ $(function() {
         replyId = data._id;
 
         enableForm(rsvpForm, 'Send Reply');
-        showAlert('Submitted Successfully!');
+        showAlert('Submitted Successfully!', '#3c3');
+        rsvpForm.hide();
+        reload.show();
       },
       error: function() {
         enableForm(rsvpForm, 'Send Reply');
-        showAlert('Failed to submit!');
+        showAlert('Failed to submit!', '#c33');
       }
-    })
+    });
+  }
+
+  function reset() {
+    token = undefined;
+    replyId = undefined;
+
+    clearAlert();
+    reload.hide();
+    rsvpForm.hide();
+    enableForm(loginForm, 'Log In');
+    loginForm.show();
   }
 });

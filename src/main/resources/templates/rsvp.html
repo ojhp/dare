@@ -4,18 +4,18 @@
   </head>
   <body>
     <div th:fragment="forms(questions)">
-      <p id="form-alert"></p>
+      <p id="form-alert" style="text-align: center; font-size: 1.5rem;"></p>
 
       <form id="login-form" th:action="${@rsvp.authenticationUrl}" method="post">
         <div class="fields">
           <div class="field">
             <label for="username">Username</label>
-            <input id="username" name="username" type="text">
+            <input id="username" name="username" type="text" required>
           </div>
 
           <div class="field">
             <label for="password">Password</label>
-            <input id="password" name="password" type="password">
+            <input id="password" name="password" type="password" required>
           </div>
         </div>
 
@@ -26,26 +26,43 @@
 
       <form id="rsvp-form" th:action="${@rsvp.repliesUrl}" method="post">
         <div class="fields">
+          <div class="field">
+            <label for="attending">Will you Be Attending?</label>
+            <select id="attending" name="attending" required>
+              <option></option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
           <div th:each="question : ${questions}" class="field">
-            <label th:for="${question.name}" th:text="${question.label}"></label>
+            <label class="question" th:if="${question.type != 'title'}" th:for="${question.name}"
+                   th:text="${question.label}"></label>
 
-            <input th:if="${question.type == 'text'}" th:id="${question.name}" th:name="${question.name}" type="text">
+            <input class="question" th:if="${question.type == 'text'}" th:id="${question.name}"
+                   th:name="${question.name}" type="text" th:data-required="${question.required}">
 
-            <select th:if="${question.type == 'select'}" th:id="${question.name}" th:name="${question.name}"
-                    th:required="${question.required}">
+            <select class="question" th:if="${question.type == 'select'}" th:id="${question.name}"
+                    th:name="${question.name}" th:data-required="${question.required}">
               <option></option>
               <option th:each="option : ${question.options.keySet()}" th:value="${option}"
                       th:text="${question.options.get(option)}"></option>
             </select>
 
-            <textarea th:if="${question.type == 'textBox'}" th:id="${question.name}" th:name="${question.name}"></textarea>
+            <textarea class="question" th:if="${question.type == 'textBox'}" th:id="${question.name}"
+                      th:name="${question.name}" th:data-required="${question.required}"></textarea>
+
+            <h3 class="question" th:if="${question.type == 'title'}" th:text="${question.label}"></h3>
           </div>
         </div>
 
         <ul class="actions">
           <li><input type="submit" value="Send Reply" class="primary"></li>
+          <li><input id="cancel" type="button" value="Cancel"></li>
         </ul>
       </form>
+
+      <button id="reload">OK</button>
     </div>
   </body>
 </html>

@@ -36,7 +36,7 @@
 						<nav>
 							<ul>
 								<li th:each="page : ${pages}"><a th:href="'#' + ${page.slug}" th:text="${page.title}">Intro</a></li>
-								<li th:if="${!replyQuestions.isEmpty()}"><a href="#rsvp">RSVP</a></li>
+								<li th:if="${site.enableRsvp}"><a href="#rsvp">RSVP</a></li>
 							</ul>
 						</nav>
 					</header>
@@ -54,7 +54,7 @@
 								</div>
 							</article>
 
-						  <article th:if="${!replyQuestions.isEmpty()}" id="rsvp">
+						  <article th:if="${site.enableRsvp}" id="rsvp">
 								<h2 class="major">RSVP</h2>
 								<div th:replace="rsvp :: forms(${replyQuestions})"></div>
 							</article>

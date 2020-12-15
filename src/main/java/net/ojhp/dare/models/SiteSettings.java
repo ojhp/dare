@@ -10,4 +10,5 @@ public class SiteSettings {
     private String icon;
     private Asset backgroundImage;
     private String footer;
+    private boolean enableRsvp;
 }

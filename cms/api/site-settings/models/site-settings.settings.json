@@ -1418,6 +1418,11 @@
     },
     "footer": {
       "type": "richtext"
+    },
+    "enableRsvp": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }
