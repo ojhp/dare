@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>net.ojhp</groupId>
 	<artifactId>dare</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<name>dare</name>
 	<description>Details And Responses for Events</description>
 

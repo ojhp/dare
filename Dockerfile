@@ -14,9 +14,9 @@ RUN apt-get update -yq && \
 ENTRYPOINT ["tini", "--"]
 
 WORKDIR /app
-COPY --from=build /build/target/dare-0.0.2.jar /app/
+COPY --from=build /build/target/dare-0.0.3.jar /app/
 
 RUN chown -R 1000:1000 /app
 USER 1000
 
-CMD ["java", "-jar", "dare-0.0.2.jar"]
+CMD ["java", "-jar", "dare-0.0.3.jar"]
